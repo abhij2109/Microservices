@@ -1,0 +1,12 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: CONFIG_SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/abhij2109/Microservices-CongifServer
+          clone-on-start: true
