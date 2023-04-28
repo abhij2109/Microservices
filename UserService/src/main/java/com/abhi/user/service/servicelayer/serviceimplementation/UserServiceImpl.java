@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
                 restTemplate.getForObject("http://RATING-SERVICE/ratings/users/"+user.getUserID(), Rating[].class);
         assert ratingsOfUser != null;
         List<Rating> ratingsOfUserList = Arrays.stream(ratingsOfUser).toList();
-        List<Rating> ratingList = ratingsOfUserList.stream().map(rating -> {
+        List<Rating> ratingList = ratingsOfUserList.stream().peek(rating -> {
 
             // Calling of HOTEL-SERVICE to fetch the hotels from given rating.
             ResponseEntity<Hotel> getHotelEntity=
@@ -72,7 +72,6 @@ public class UserServiceImpl implements UserService {
 
             // Setting the hotel for the particular ratings.
             rating.setHotel(hotel);
-            return rating;
 
         }).collect(Collectors.toList());
 
