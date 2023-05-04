@@ -1,6 +1,7 @@
 server:
   port: 8084
 
+---
 spring:
   application:
     name: API-GATEWAY
@@ -22,6 +23,7 @@ spring:
           predicates:
             - Path=/ratings/**
 
+---
 eureka:
   instance:
     prefer-ip-address: true
@@ -30,3 +32,13 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+# OKTA configurations for API gateway
+---
+okta:
+  oauth2:
+    issuer: https://dev-72714295.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa9e20gihAGKxWfl5d7
+    client-secret: YR-afo0lDgmGVfJmADpj_q5TWopzNvD4UgJcZFmg
+    scopes: openid, email, profile, offline_access
